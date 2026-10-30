@@ -1,0 +1,74 @@
+# Watchlist sản phẩm. Thêm, bớt tùy ý.
+#
+# Mỗi entry khớp khi TẤT CẢ các trường có mặt đều khớp (regex, không phân biệt hoa thường):
+#   vendor:  so với vendor trong CVE record (hoặc vendorProject của KEV)
+#   product: so với product trong CVE record
+#   text:    so với tiêu đề + mô tả CVE
+# Entry chỉ có `text` sẽ khớp theo nội dung, dùng khi CNA ghi vendor/product không thống nhất.
+# Dùng \b để tránh khớp nhầm, ví dụ "\bphp\b".
+
+groups:
+  edge:
+    label: Thiết bị biên / VPN / Firewall
+    entries:
+      - vendor: fortinet
+      - vendor: palo ?alto
+      - vendor: cisco
+      - vendor: ivanti
+      - vendor: citrix
+      - vendor: sonicwall
+      - vendor: check ?point
+      - vendor: juniper
+      - vendor: '^f5\b'
+        product: 'big-?ip|big-?iq'
+
+  microsoft_virt:
+    label: Microsoft & ảo hóa
+    entries:
+      - vendor: microsoft
+        product: windows|exchange|sharepoint|sql server|active directory|hyper-v
+      - text: '\bhyper-v\b'
+      - vendor: vmware|broadcom
+        product: vcenter|esxi|workstation|fusion|cloud foundation|aria|tools
+
+  linux_oss:
+    label: Linux & hạ tầng mã nguồn mở
+    entries:
+      - vendor: '^linux$'
+        product: '^linux$'
+      - product: '^openssl$'
+      - product: openssh
+      - product: '^nginx'
+      - vendor: apache
+        product: 'http server|httpd'
+      - product: kubernetes
+      - product: '^(docker|moby|containerd|runc)'
+      - product: '^glibc$|gnu c library'
+      - product: '^sudo$'
+      - product: '^systemd$'
+
+  dev_apps:
+    label: Ứng dụng & công cụ dev
+    entries:
+      - vendor: jenkins
+      - vendor: gitlab
+      - vendor: atlassian
+      - product: 'log4j'
+      - vendor: vmware|broadcom|spring
+        product: '^spring'
+      - vendor: apache
+        product: struts
+      - product: '^node\.?js$'
+
+  custom:
+    label: Hệ thống đang vận hành
+    entries:
+      - vendor: apache
+        product: tomcat
+      - product: '^php$'
+      - vendor: '^(the )?php( group)?$'
+      - vendor: '^sap'
+        product: hana
+      - vendor: '^sap'
+        product: business ?one|\bb1\b
+      - vendor: oracle
