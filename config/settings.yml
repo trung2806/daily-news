@@ -39,6 +39,8 @@ llm:
   max_items_per_call: 10
   max_p1_per_run: 5
   timeout_seconds: 300
+  # Cảnh báo P1 gửi đi thiếu phân tích (token lỗi, hết hạn mức) sẽ được gửi bổ sung nếu khắc phục trong số giờ này.
+  followup_hours: 72
 
 telegram:
   enabled: true

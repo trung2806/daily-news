@@ -140,10 +140,12 @@ def _h(text):
     return html.escape(text or "", quote=False)
 
 
-def telegram_alert(state, url):
+def telegram_alert(state, url, note=None, followup=False):
+    """`note`: why the Vietnamese analysis is missing. `followup`: resend once the analysis exists."""
     item, s = state["item"], state.get("summary")
+    header = f"📝 <b>Bổ sung phân tích · {_h(item['id'])}</b>" if followup else f"🔴 <b>{state['tier']} · {_h(item['id'])}</b>"
     lines = [
-        f"🔴 <b>{state['tier']} · {_h(item['id'])}</b>",
+        header,
         f"<b>{_h(item['title'] or product_label(item))}</b>",
         f"Sản phẩm: {_h(product_label(item))}",
         f"CVSS {_h(cvss_label(item))} · EPSS {_h(epss_label(item))} · Khai thác: {_h(exploit_label(item))}",
@@ -161,12 +163,14 @@ def telegram_alert(state, url):
         lines += [_h(desc[:600] + ("…" if len(desc) > 600 else ""))]
         if item["kev"]:
             lines += [f"<b>CISA KEV:</b> hạn xử lý {_h(item['kev']['due_date'])}, ransomware: {_h(item['kev']['ransomware'])}"]
+        if note:
+            lines += ["", f"⚠️ Chưa có phân tích tiếng Việt: {_h(note)}. Bot sẽ gửi bổ sung khi khắc phục xong."]
     if url:
         lines += ["", f'<a href="{_h(url)}">Chi tiết</a>']
     return "\n".join(lines)
 
 
-def telegram_digest(states, title, url, limit=15):
+def telegram_digest(states, title, url, limit=15, note=None):
     kev = sum(1 for s in states if s["item"]["kev"])
     watched = sum(1 for s in states if s["item"].get("watch_groups"))
     lines = [f"📰 <b>{_h(title)}</b>", f"{len(states)} CVE · {kev} KEV · {watched} watchlist", ""]
@@ -177,6 +181,8 @@ def telegram_digest(states, title, url, limit=15):
         lines.append(f"• <b>{_h(i['id'])}</b> {_h(product_label(i))} · CVSS {score}{tag}")
     if len(states) > limit:
         lines.append(f"… và {len(states) - limit} CVE khác")
+    if note:
+        lines += ["", f"⚠️ Bản tin chưa có phân tích tiếng Việt: {_h(note)}."]
     if url:
         lines += ["", f'<a href="{_h(url)}">Xem bản tin đầy đủ</a>']
     return "\n".join(lines)
