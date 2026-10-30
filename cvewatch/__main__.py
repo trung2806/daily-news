@@ -5,6 +5,7 @@
     python -m cvewatch backfill # rebuild backlog/patch-backlog.md
 """
 import argparse
+import glob
 import logging
 import os
 from concurrent.futures import ThreadPoolExecutor
@@ -99,7 +100,8 @@ def process(ctx, items, kev_recent):
         stamp = ctx.local_now.strftime("%Y-%m-%d_%H%M")
         rel = f"alerts/{ctx.local_now:%Y/%m}/{stamp}_{state['item']['id']}.md"
         ctx.write(rel, render.alert_markdown(state, ctx.now_label()))
-        notify.telegram(render.telegram_alert(state, ctx.github_url(rel)), cfg, ctx.dry_run)
+        note = None if state["summary"] else summarize.last_error
+        notify.telegram(render.telegram_alert(state, ctx.github_url(rel), note), cfg, ctx.dry_run)
         state["alerted_at"] = ctx.now.isoformat()
         state["kev_alerted"] = state["kev_alerted"] or bool(state["item"]["kev"])
     for state in kept:
@@ -144,6 +146,32 @@ def poll(ctx, cursor):
 
     process(ctx, items, kev_recent)
     cursor["delta_fetch_time"] = newest
+
+
+def followup(ctx):
+    """Send the Vietnamese analysis for recent P1 alerts that went out without one (e.g. bad token)."""
+    if summarize.last_error or not summarize.available(ctx.cfg):
+        return
+    since = ctx.now - timedelta(hours=ctx.cfg["llm"].get("followup_hours", 72))
+    pending = [s for s in ctx.store.all()
+               if s["tier"] == "P1" and s["alerted_at"] and not s["summary"] and sources.parse_ts(s["alerted_at"]) >= since]
+    if not pending:
+        return
+    pending.sort(key=lambda s: priority_key(s["item"]))
+    pending = pending[: ctx.cfg["llm"]["max_p1_per_run"]]
+    summaries = summarize.summarize([s["item"] for s in pending], ctx.cfg, ctx.cfg["llm"]["p1_model"])
+    for state in pending:
+        state["summary"] = summaries.get(state["item"]["id"])
+        if not state["summary"]:
+            continue
+        # Rewrite the original alert file in place so the repo link shows the analysis too.
+        files = sorted(glob.glob(os.path.join(ctx.root, "alerts", "**", f"*_{state['item']['id']}.md"), recursive=True))
+        rel = os.path.relpath(files[-1], ctx.root) if files else (
+            f"alerts/{ctx.local_now:%Y/%m}/{ctx.local_now:%Y-%m-%d_%H%M}_{state['item']['id']}.md")
+        ctx.write(rel, render.alert_markdown(state, ctx.now_label()))
+        notify.telegram(render.telegram_alert(state, ctx.github_url(rel), followup=True), ctx.cfg, ctx.dry_run)
+        ctx.store.put(state)
+    log.info("followup: sent analysis for %d/%d alerts", sum(1 for s in pending if s["summary"]), len(pending))
 
 
 def refresh_tracked(ctx):
@@ -198,7 +226,9 @@ def digest(ctx, slot):
     if overflow:
         text += f"\n_Còn {len(overflow)} CVE ưu tiên thấp hơn không hiển thị (giới hạn {cfg['max_items']}/bản tin)._\n"
     ctx.write(rel, text)
-    notify.telegram(render.telegram_digest(shown, title, ctx.github_url(rel)), ctx.cfg, ctx.dry_run)
+    missing = any(not s["summary"] for s in shown[: cfg["max_summarized"]])
+    note = summarize.last_error if missing else None
+    notify.telegram(render.telegram_digest(shown, title, ctx.github_url(rel), note=note), ctx.cfg, ctx.dry_run)
     for s in states:
         s["digested_at"] = ctx.now.isoformat()
         ctx.store.put(s)
@@ -219,6 +249,7 @@ def main():
     cursor = ctx.store.load_cursor()
     if args.command == "run":
         poll(ctx, cursor)
+        followup(ctx)
         slot = current_slot(ctx)
         if not args.no_digest and cursor.get("last_digest_slot") != slot.isoformat():
             refresh_tracked(ctx)

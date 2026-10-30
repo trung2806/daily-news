@@ -47,17 +47,45 @@ SCHEMA = {
 
 MAX_DESCRIPTION = 2000
 
+# Human-readable reason for the most recent failure, shown in Telegram so a broken token is noticed.
+last_error = None
+
+
+def _fail(reason):
+    global last_error
+    last_error = reason
+    log.warning(reason)
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::warning title=Claude summary::{reason}")
+
 
 def available(cfg):
     if not cfg["llm"].get("enabled", True):
         return False
     if not shutil.which("claude"):
-        log.info("claude CLI not installed, skipping summaries")
+        _fail("Chưa cài Claude Code trên runner")
         return False
     if not (os.environ.get("CLAUDE_CODE_OAUTH_TOKEN") or os.environ.get("ANTHROPIC_API_KEY")):
-        log.info("no Claude credentials, skipping summaries")
+        _fail("Chưa cấu hình secret CLAUDE_CODE_OAUTH_TOKEN")
         return False
     return True
+
+
+class ClaudeError(RuntimeError):
+    def __init__(self, message, status=None):
+        super().__init__(message)
+        self.status = status
+
+
+def _reason(exc):
+    if isinstance(exc, ClaudeError) and exc.status == 401:
+        return ("Token Claude không hợp lệ hoặc đã hết hạn (401). Chạy lại `claude setup-token` "
+                "và cập nhật secret CLAUDE_CODE_OAUTH_TOKEN")
+    if isinstance(exc, ClaudeError) and exc.status == 429:
+        return "Đã chạm hạn mức gói Claude (429), sẽ thử lại ở lần chạy sau"
+    if isinstance(exc, subprocess.TimeoutExpired):
+        return "Claude phản hồi quá thời gian chờ"
+    return f"Lỗi khi gọi Claude: {str(exc)[:200]}"
 
 
 def _facts(item):
@@ -99,11 +127,12 @@ def _call(items, model, timeout):
         "--no-session-persistence",
     ]
     proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout)
-    if proc.returncode != 0:
-        raise RuntimeError(f"claude exited {proc.returncode}: {(proc.stderr or proc.stdout)[-500:]}")
-    result = json.loads(proc.stdout)
-    if result.get("is_error"):
-        raise RuntimeError(f"claude error: {str(result.get('result'))[:500]}")
+    try:
+        result = json.loads(proc.stdout)
+    except ValueError:
+        raise ClaudeError(f"claude exited {proc.returncode}: {(proc.stderr or proc.stdout)[-300:]}")
+    if result.get("is_error") or proc.returncode != 0:
+        raise ClaudeError(str(result.get("result"))[:300], result.get("api_error_status"))
     return (result.get("structured_output") or {}).get("items") or []
 
 
@@ -111,6 +140,8 @@ def summarize(items, cfg, model):
     """Return {cve_id: summary_dict} for whatever could be summarized."""
     if not items or not available(cfg):
         return {}
+    if last_error and "(401)" in last_error:
+        return {}  # already rejected earlier in this run
     llm = cfg["llm"]
     wanted = {i["id"] for i in items}
     out = {}
@@ -123,7 +154,7 @@ def summarize(items, cfg, model):
                     out[s["cve_id"]] = s
         except Exception as exc:
             # Usually quota exhaustion or an expired token; stop instead of burning retries.
-            log.warning("summary failed (%s): %s", model, exc)
+            _fail(_reason(exc))
             break
     log.info("summarized %d/%d with %s", len(out), len(items), model)
     return out
