@@ -19,7 +19,7 @@ tiers:
     watchlist_public_exploit: true  # hoặc thuộc watchlist và đã có exploit công khai
   # P2: gom vào bản tin 06:00 / 18:00.
   p2:
-    watchlist_min_cvss: 7.0
+    watchlist_min_cvss: 8.0
     global_min_cvss: 9.0          # ngoài watchlist: CVSS >= ngưỡng
     global_require_network: true  # và attack vector là Network
     global_exploit_min_cvss: 7.0  # hoặc có exploit công khai và CVSS >= ngưỡng

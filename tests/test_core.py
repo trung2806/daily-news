@@ -52,7 +52,8 @@ def test_watchlist_avoids_obvious_false_positives():
 
 def test_tiers():
     assert classify(item_of(record("Fortinet", "FortiOS", 9.8)), CFG, False)[0] == "P1"
-    assert classify(item_of(record("Fortinet", "FortiOS", 7.5)), CFG, False)[0] == "P2"
+    assert classify(item_of(record("Fortinet", "FortiOS", 8.5)), CFG, False)[0] == "P2"
+    assert classify(item_of(record("Fortinet", "FortiOS", 7.5)), CFG, False)[0] is None
     assert classify(item_of(record("Fortinet", "FortiOS", 5.0)), CFG, False)[0] is None
     assert classify(item_of(record("acme", "widget", 9.8)), CFG, False)[0] == "P2"
     local = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
@@ -100,6 +101,12 @@ def test_watchlist_matches_kev_naming():
     assert WL.match(kev_item("Broadcom", "VMware ESX"))
     assert WL.match(kev_item("Microsoft", "Win32k"))
     assert WL.match(kev_item("Apache", "Tomcat"))
+    assert WL.match(kev_item("Microsoft", "Office Outlook"))
+    assert WL.match(kev_item("Microsoft", ".NET Framework"))
+    assert WL.match(model.from_record(record("Microsoft", "Microsoft 365 Apps for Enterprise")))
+    assert not WL.match(kev_item("Microsoft", "Internet Explorer"))
+    assert WL.match(kev_item("Microsoft", "Netlogon"))
+    assert WL.match(kev_item("Microsoft", "SMBv1 server"))
     assert not WL.match(kev_item("SAP", "NetWeaver"))
 
 

@@ -21,7 +21,7 @@ GitHub Actions (mỗi 15 phút)
 | Mức | Điều kiện mặc định | Gửi |
 |---|---|---|
 | **P1** | Mới vào CISA KEV; hoặc thuộc watchlist và (CVSS ≥ 9, EPSS ≥ 0.5 hoặc đã có exploit công khai) | Telegram ngay |
-| **P2** | Thuộc watchlist và CVSS ≥ 7; hoặc CVSS ≥ 9 tấn công qua mạng; hoặc có exploit và CVSS ≥ 7 | Bản tin 06:00 / 18:00 |
+| **P2** | Thuộc watchlist và CVSS ≥ 8; hoặc CVSS ≥ 9 tấn công qua mạng; hoặc có exploit và CVSS ≥ 7 | Bản tin 06:00 / 18:00 |
 
 Mọi ngưỡng nằm trong [`config/settings.yml`](config/settings.yml).
 
