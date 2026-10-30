@@ -55,6 +55,17 @@ Thiếu secret nào thì bot bỏ qua tính năng đó và vẫn chạy phần c
 
 **5. Chạy thử:** Actions → CVE bot → Run workflow. Lần đầu bot quét lùi 6 giờ, cảnh báo các CVE vào KEV trong 3 ngày gần nhất và xuất ngay một bản tin.
 
+## Danh sách cần vá (backlog)
+
+Bản tin chỉ báo CVE mới. Để rà các lỗ hổng cũ có thể vẫn chưa vá, vào Actions → CVE bot → Run workflow → chọn `backfill`. Bot sẽ dựng file [`backlog/patch-backlog.md`](backlog/patch-backlog.md) gồm hai phần:
+
+1. **Toàn bộ CISA KEV thuộc watchlist, không giới hạn thời gian.** Đây là những lỗ hổng đã bị khai thác thực tế, nên ưu tiên vá trước. Danh sách nhóm theo hãng và sản phẩm, có hạn xử lý của CISA và cờ ransomware.
+2. **CVE thuộc watchlist có CVSS ≥ 7, công bố trong 30 ngày gần nhất**, có tóm tắt tiếng Việt kèm cách khắc phục.
+
+Mỗi CVE là một dòng checklist. Vá xong thì sửa `- [ ]` thành `- [x]`, sửa trực tiếp trên GitHub cũng được. Chạy `backfill` lần sau, danh sách được làm mới nhưng các dòng đã tick vẫn giữ nguyên. Nên chạy lại mỗi tháng, hoặc mỗi khi bạn đổi watchlist.
+
+Lưu ý: danh sách liệt kê lỗ hổng *có thể* ảnh hưởng tới các hãng bạn dùng. Muốn biết hệ thống có thực sự dính hay không, vẫn phải đối chiếu với phiên bản đang chạy.
+
 ## Tùy chỉnh
 
 - **Watchlist:** sửa [`config/watchlist.yml`](config/watchlist.yml) rồi push lên `main`, lần chạy kế tiếp sẽ áp dụng. Mỗi entry khớp theo `vendor`, `product` và/hoặc `text` (regex, không phân biệt hoa thường). Muốn biết vendor/product chính xác của một CVE, mở record trên [cve.org](https://www.cve.org) hoặc xem file trong `cves/` trên branch `state`.

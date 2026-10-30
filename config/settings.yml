@@ -43,6 +43,15 @@ llm:
 telegram:
   enabled: true
 
+backfill:
+  # Lệnh backfill (chạy tay từ tab Actions): danh sách cần vá trong backlog/patch-backlog.md.
+  days: 30            # tối đa 30 (giới hạn của cvelistV5 deltaLog)
+  # Phần 2 chỉ lấy CVE nghiêm trọng: CVSS >= min_cvss, hoặc đã có exploit và CVSS >= exploit_min_cvss.
+  min_cvss: 9.0
+  exploit_min_cvss: 7.0
+  max_summarized: 30  # số CVE phần 2 được tóm tắt bằng LLM
+  fetch_workers: 16
+
 retention:
   # Xóa state của CVE cũ hơn số ngày này.
   days: 30

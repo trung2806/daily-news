@@ -26,19 +26,19 @@ groups:
     label: Microsoft & ảo hóa
     entries:
       - vendor: microsoft
-        product: windows|exchange|sharepoint|sql server|active directory|hyper-v
+        product: windows|win32k|dwm|exchange|sharepoint|sql server|active directory|hyper-v|kerberos|remote desktop
       - text: '\bhyper-v\b'
       - vendor: vmware|broadcom
-        product: vcenter|esxi|workstation|fusion|cloud foundation|aria|tools
+        product: vcenter|\besxi?\b|workstation|fusion|cloud foundation|aria|tools
 
   linux_oss:
     label: Linux & hạ tầng mã nguồn mở
     entries:
       - vendor: '^linux$'
-        product: '^linux$'
+        product: '^(linux|linux kernel|kernel)$'
       - product: '^openssl$'
       - product: openssh
-      - product: '^nginx'
+      - product: '^nginx( plus| open source)?$'
       - vendor: apache
         product: 'http server|httpd'
       - product: kubernetes

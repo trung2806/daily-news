@@ -2,6 +2,7 @@
 
     python -m cvewatch run      # poll sources, alert P1, publish the digest when a slot is due
     python -m cvewatch digest   # publish the digest now
+    python -m cvewatch backfill # rebuild backlog/patch-backlog.md
 """
 import argparse
 import logging
@@ -12,7 +13,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from . import model, notify, render, sources, summarize
+from . import backfill, model, notify, render, sources, summarize
 from .scoring import TIER_RANK, classify, priority_key
 from .store import Store
 from .watchlist import Watchlist
@@ -206,7 +207,7 @@ def digest(ctx, slot):
 
 def main():
     parser = argparse.ArgumentParser(prog="cvewatch")
-    parser.add_argument("command", choices=["run", "digest"])
+    parser.add_argument("command", choices=["run", "digest", "backfill"])
     parser.add_argument("--root", default=".", help="repository root (config/, reports/, alerts/)")
     parser.add_argument("--data", default="data", help="state directory")
     parser.add_argument("--dry-run", action="store_true", help="print Telegram messages instead of sending")
@@ -223,8 +224,10 @@ def main():
             refresh_tracked(ctx)
             digest(ctx, slot)
             cursor["last_digest_slot"] = slot.isoformat()
-    else:
+    elif args.command == "digest":
         digest(ctx, ctx.local_now)
+    else:
+        backfill.run(ctx)
     removed = ctx.store.prune(ctx.cfg["retention"]["days"])
     if removed:
         log.info("pruned %d old CVE states", removed)

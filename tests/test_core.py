@@ -85,3 +85,27 @@ def test_record_url_buckets():
     assert record_url("CVE-2026-74912").endswith("/cves/2026/74xxx/CVE-2026-74912.json")
     assert record_url("CVE-2026-1234").endswith("/cves/2026/1xxx/CVE-2026-1234.json")
     assert record_url("CVE-2026-115943").endswith("/cves/2026/115xxx/CVE-2026-115943.json")
+
+
+def kev_item(vendor, product, name=""):
+    entry = {"cveID": "CVE-2024-0001", "vendorProject": vendor, "product": product,
+             "vulnerabilityName": name, "shortDescription": ""}
+    item = model.from_kev(entry)
+    item["kev"] = model.kev_facts(entry)
+    return item
+
+
+def test_watchlist_matches_kev_naming():
+    assert WL.match(kev_item("Linux", "Kernel"))
+    assert WL.match(kev_item("Broadcom", "VMware ESX"))
+    assert WL.match(kev_item("Microsoft", "Win32k"))
+    assert WL.match(kev_item("Apache", "Tomcat"))
+    assert not WL.match(kev_item("SAP", "NetWeaver"))
+
+
+def test_backlog_keeps_ticked_items(tmp_path):
+    from cvewatch.backfill import ticked_ids
+    path = tmp_path / "b.md"
+    path.write_text("- [x] **CVE-2024-1111** a\n- [ ] **CVE-2024-2222** b\n- [X] **CVE-2023-3333** c\n", encoding="utf-8")
+    assert ticked_ids(str(path)) == {"CVE-2024-1111", "CVE-2023-3333"}
+    assert ticked_ids(str(tmp_path / "missing.md")) == set()
