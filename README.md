@@ -101,10 +101,13 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/10/30-PM](reports/2026/10/30-PM.md)
 - [2026/10/30-AM](reports/2026/10/30-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-118527: Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability](alerts/2026/10/2026-10-31_0408_CVE-2026-118527.md)
+- [🔴 CVE-2026-111357: Ivanti Connect Secure](alerts/2026/10/2026-10-31_0408_CVE-2026-111357.md)
 - [🔴 CVE-2026-101767: Oracle Corporation Oracle Application Object Library](alerts/2026/10/2026-10-30_1353_CVE-2026-101767.md)
 - [🔴 CVE-2026-97229: Integer Overflow or Wraparound in GitLab](alerts/2026/10/2026-10-30_1054_CVE-2026-97229.md)
 - [🔴 CVE-2026-76418: Cisco Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense Software Remote Access SSL VPN Tunnel Denial of Service Vulnerability](alerts/2026/10/2026-10-30_1054_CVE-2026-76418.md)
