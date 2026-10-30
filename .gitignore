@@ -1,0 +1,6 @@
+# State lives on the `state` branch, mounted here as a git worktree by the workflow.
+/data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/

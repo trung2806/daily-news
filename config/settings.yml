@@ -1,0 +1,50 @@
+# Cấu hình bot CVE. Sửa file này rồi push lên main, lần chạy kế tiếp sẽ áp dụng.
+
+timezone: Asia/Ho_Chi_Minh
+
+poll:
+  # Lần chạy đầu tiên (chưa có state) chỉ quét lùi bấy nhiêu giờ.
+  first_run_lookback_hours: 6
+  # CVE vào CISA KEV trong số ngày gần đây mới được xét cảnh báo.
+  kev_recent_days: 3
+  # Số luồng tải CVE record song song.
+  fetch_workers: 8
+
+tiers:
+  # P1: gửi Telegram ngay.
+  p1:
+    kev_new: true                 # mọi CVE mới vào CISA KEV
+    watchlist_min_cvss: 9.0       # thuộc watchlist và CVSS >= ngưỡng
+    watchlist_min_epss: 0.5       # hoặc thuộc watchlist và EPSS >= ngưỡng
+    watchlist_public_exploit: true  # hoặc thuộc watchlist và đã có exploit công khai
+  # P2: gom vào bản tin 06:00 / 18:00.
+  p2:
+    watchlist_min_cvss: 7.0
+    global_min_cvss: 9.0          # ngoài watchlist: CVSS >= ngưỡng
+    global_require_network: true  # và attack vector là Network
+    global_exploit_min_cvss: 7.0  # hoặc có exploit công khai và CVSS >= ngưỡng
+
+digest:
+  times: ["06:00", "18:00"]
+  # Số CVE tối đa được viết tóm tắt bằng LLM trong một bản tin; phần còn lại chỉ liệt kê.
+  max_summarized: 25
+  # Số CVE tối đa xuất hiện trong một bản tin (ưu tiên KEV, exploit, CVSS, EPSS).
+  max_items: 80
+
+llm:
+  enabled: true
+  # Gói Pro: Sonnet cho cảnh báo P1 (ít, cần chính xác), Haiku cho bản tin (nhiều, nhẹ hạn mức).
+  p1_model: sonnet
+  digest_model: haiku
+  max_items_per_call: 10
+  max_p1_per_run: 5
+  timeout_seconds: 300
+
+telegram:
+  enabled: true
+
+retention:
+  # Xóa state của CVE cũ hơn số ngày này.
+  days: 30
+  # CVE thuộc watchlist chưa có CVSS được theo dõi cập nhật trong số ngày này.
+  track_unscored_days: 14
