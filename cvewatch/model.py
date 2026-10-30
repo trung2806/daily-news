@@ -108,16 +108,17 @@ def from_record(rec):
         "ssvc_exploitation": (ssvc.get("Exploitation") or "").lower(),
         "references": refs[:MAX_REFS],
         "kev": None,
+        "vulncheck": None,
         "public_exploit": False,
         "epss": None,
         "ghsa": [],
     }
 
 
-def from_kev(entry):
-    """Minimal item for a KEV entry whose CVE record could not be fetched."""
+def from_kev(entry, cve_id=None):
+    """Minimal item for a CISA or VulnCheck KEV entry whose CVE record could not be fetched."""
     return {
-        "id": entry["cveID"],
+        "id": cve_id or entry["cveID"],
         "title": entry.get("vulnerabilityName", ""),
         "description": entry.get("shortDescription", ""),
         "published": None,
@@ -129,6 +130,7 @@ def from_kev(entry):
         "ssvc_exploitation": "",
         "references": [],
         "kev": None,
+        "vulncheck": None,
         "public_exploit": False,
         "epss": None,
         "ghsa": [],
@@ -147,5 +149,16 @@ def kev_facts(entry):
     }
 
 
+def vulncheck_facts(entry):
+    return {
+        "date_added": (entry.get("date_added") or "")[:10],
+        "in_cisa_kev": bool(entry.get("cisa_date_added")),
+        "ransomware": entry.get("knownRansomwareCampaignUse"),
+        "reported": [r["url"] for r in entry.get("vulncheck_reported_exploitation") or [] if r.get("url")][:5],
+        "exploits": [x.get("exploit_type") or "exploit" for x in entry.get("vulncheck_xdb") or []][:5],
+    }
+
+
 def exploit_signal(item):
-    return bool(item["kev"] or item["public_exploit"] or item["ssvc_exploitation"] in ("poc", "active"))
+    return bool(item["kev"] or item.get("vulncheck") or item["public_exploit"]
+                or item["ssvc_exploitation"] in ("poc", "active"))

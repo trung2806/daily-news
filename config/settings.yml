@@ -5,20 +5,27 @@ timezone: Asia/Ho_Chi_Minh
 poll:
   # Lần chạy đầu tiên (chưa có state) chỉ quét lùi bấy nhiêu giờ.
   first_run_lookback_hours: 6
-  # CVE vào CISA KEV trong số ngày gần đây mới được xét cảnh báo.
+  # CVE vào CISA KEV / VulnCheck KEV trong số ngày gần đây mới được xét cảnh báo.
   kev_recent_days: 3
+  # Số trang VulnCheck KEV (100 mục/trang, mới nhất trước) đọc mỗi lần chạy.
+  vulncheck_pages: 3
   # Số luồng tải CVE record song song.
   fetch_workers: 8
 
 tiers:
-  # P1: gửi Telegram ngay.
+  # P1: gửi Telegram ngay. Chỉ khi có bằng chứng khai thác, CVSS cao đơn thuần vào bản tin.
   p1:
-    kev_new: true                 # mọi CVE mới vào CISA KEV
-    watchlist_min_cvss: 9.0       # thuộc watchlist và CVSS >= ngưỡng
-    watchlist_min_epss: 0.5       # hoặc thuộc watchlist và EPSS >= ngưỡng
-    watchlist_public_exploit: true  # hoặc thuộc watchlist và đã có exploit công khai
+    kev_new: true                   # mọi CVE mới vào CISA KEV
+    vulncheck_kev_watchlist: true   # thuộc watchlist và mới vào VulnCheck KEV
+    watchlist_min_epss: 0.5         # hoặc thuộc watchlist và EPSS >= ngưỡng
+    watchlist_exploit: true         # hoặc thuộc watchlist, đã có exploit công khai
+    watchlist_exploit_min_cvss: 7.0 #   và CVSS >= ngưỡng
+    # Một lần chạy có nhiều P1 hơn số này: phần dư gom thành một tin, phân tích chi tiết vào bản tin.
+    max_individual_alerts: 5
   # P2: gom vào bản tin 06:00 / 18:00.
   p2:
+    vulncheck_kev_new: true       # CVE ngoài watchlist mới vào VulnCheck KEV
+    watchlist_critical_cvss: 9.0  # thuộc watchlist, CVSS >= ngưỡng: đánh dấu 🟠 nghiêm trọng, xếp đầu bản tin
     watchlist_min_cvss: 8.0
     global_min_cvss: 9.0          # ngoài watchlist: CVSS >= ngưỡng
     global_require_network: true  # và attack vector là Network
@@ -37,7 +44,6 @@ llm:
   p1_model: sonnet
   digest_model: haiku
   max_items_per_call: 10
-  max_p1_per_run: 5
   timeout_seconds: 300
   # Cảnh báo P1 gửi đi thiếu phân tích (token lỗi, hết hạn mức) sẽ được gửi bổ sung nếu khắc phục trong số giờ này.
   followup_hours: 72

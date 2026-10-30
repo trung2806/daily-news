@@ -65,14 +65,14 @@ def enrich_ghsa(items, workers):
             item["ghsa"] = facts
 
 
-def process(ctx, items, kev_recent):
+def process(ctx, items, kev_recent, vulncheck_recent=frozenset()):
     """Classify items, persist the ones worth tracking and send P1 alerts."""
     cfg = ctx.cfg
     track_days = cfg["retention"]["track_unscored_days"]
     alerts, kept = [], []
     for item in items:
         prev = ctx.store.get(item["id"])
-        tier, reasons = classify(item, cfg, item["id"] in kev_recent)
+        tier, reasons = classify(item, cfg, item["id"] in kev_recent, item["id"] in vulncheck_recent)
         published = sources.parse_ts(item["published"]) if item["published"] else ctx.now
         watch_unscored = item["watch_groups"] and item["cvss"] is None and ctx.now - published < timedelta(days=track_days)
         if not tier and not watch_unscored and not prev:
@@ -82,6 +82,7 @@ def process(ctx, items, kev_recent):
         item["ghsa"] = item["ghsa"] or state["item"].get("ghsa", [])
         if item["epss"] is None:
             item["epss"] = state["item"].get("epss")
+        item["vulncheck"] = item["vulncheck"] or state["item"].get("vulncheck")
         state["item"], state["updated"] = item, ctx.now.isoformat()
         if TIER_RANK[tier] >= TIER_RANK[state["tier"]]:
             state["tier"], state["reasons"] = tier, reasons
@@ -93,17 +94,27 @@ def process(ctx, items, kev_recent):
     enrich_ghsa([s["item"] for s in kept if s["tier"]], cfg["poll"]["fetch_workers"])
 
     alerts.sort(key=lambda s: priority_key(s["item"]))
-    need = [s["item"] for s in alerts if not s["summary"]][: cfg["llm"]["max_p1_per_run"]]
+    limit = cfg["tiers"]["p1"]["max_individual_alerts"]
+    individual, grouped = alerts[:limit], alerts[limit:]
+    individual_ids = {s["item"]["id"] for s in individual}
+    need = [s["item"] for s in individual if not s["summary"]]
     summaries = summarize.summarize(need, cfg, cfg["llm"]["p1_model"])
+    stamp = ctx.local_now.strftime("%Y-%m-%d_%H%M")
+    links = {}
     for state in alerts:
-        state["summary"] = state["summary"] or summaries.get(state["item"]["id"])
-        stamp = ctx.local_now.strftime("%Y-%m-%d_%H%M")
         rel = f"alerts/{ctx.local_now:%Y/%m}/{stamp}_{state['item']['id']}.md"
+        links[state["item"]["id"]] = ctx.github_url(rel)
+        state["summary"] = state["summary"] or summaries.get(state["item"]["id"])
         ctx.write(rel, render.alert_markdown(state, ctx.now_label()))
-        note = None if state["summary"] else summarize.last_error
-        notify.telegram(render.telegram_alert(state, ctx.github_url(rel), note), cfg, ctx.dry_run)
         state["alerted_at"] = ctx.now.isoformat()
         state["kev_alerted"] = state["kev_alerted"] or bool(state["item"]["kev"])
+        # Only alerts sent on their own get a follow-up; grouped ones are analysed in the digest.
+        state["needs_followup"] = state["item"]["id"] in individual_ids and not state["summary"]
+    for state in individual:
+        note = None if state["summary"] else summarize.last_error
+        notify.telegram(render.telegram_alert(state, links[state["item"]["id"]], note), cfg, ctx.dry_run)
+    if grouped:
+        notify.telegram(render.telegram_alert_group(grouped, links), cfg, ctx.dry_run)
     for state in kept:
         ctx.store.put(state)
     log.info("tracked %d, alerted %d", len(kept), len(alerts))
@@ -116,13 +127,21 @@ def poll(ctx, cursor):
     kev = sources.fetch_kev()
     since = ctx.local_now.date() - timedelta(days=cfg["kev_recent_days"])
     kev_recent = {cid for cid, e in kev.items() if date.fromisoformat(e["dateAdded"]) >= since}
+    vulncheck = sources.fetch_vulncheck_kev(cfg.get("vulncheck_pages", 3))
+    vulncheck_recent = {cid for cid, e in vulncheck.items()
+                        if (e.get("date_added") or "")[:10] >= since.isoformat()}
 
     ids = {cid for cid, kind in changes.items() if kind == "new" or cid in tracked}
     for cid in kev_recent:
         state = ctx.store.get(cid)
         if not state or not state["kev_alerted"]:
             ids.add(cid)
-    log.info("delta: %d changes, %d to evaluate (%d recent KEV)", len(changes), len(ids), len(kev_recent))
+    for cid in vulncheck_recent:
+        state = ctx.store.get(cid)
+        if not state or not state["item"].get("vulncheck"):
+            ids.add(cid)
+    log.info("delta: %d changes, %d to evaluate (%d recent CISA KEV, %d recent VulnCheck KEV)",
+             len(changes), len(ids), len(kev_recent), len(vulncheck_recent))
 
     records = sources.fetch_records(sorted(ids), cfg["fetch_workers"])
     exploit_ids = sources.fetch_nuclei_ids()
@@ -131,20 +150,25 @@ def poll(ctx, cursor):
         item = model.from_record(records[cid]) if records.get(cid) else None
         if item is None and cid in kev:
             item = model.from_kev(kev[cid])
+        if item is None and cid in vulncheck:
+            item = model.from_kev(vulncheck[cid], cid)
         if item is None:
             continue
         if cid in kev:
             item["kev"] = model.kev_facts(kev[cid])
+        if cid in vulncheck:
+            item["vulncheck"] = model.vulncheck_facts(vulncheck[cid])
         item["public_exploit"] = cid in exploit_ids
         item["watch_groups"] = ctx.watchlist.match(item)
         items.append(item)
 
-    relevant = [i["id"] for i in items if i["watch_groups"] or i["kev"] or (i["cvss"] and i["cvss"]["score"] >= 7)]
+    relevant = [i["id"] for i in items
+                if i["watch_groups"] or i["kev"] or i["vulncheck"] or (i["cvss"] and i["cvss"]["score"] >= 7)]
     epss = sources.fetch_epss(relevant)
     for item in items:
         item["epss"] = epss.get(item["id"])
 
-    process(ctx, items, kev_recent)
+    process(ctx, items, kev_recent, vulncheck_recent)
     cursor["delta_fetch_time"] = newest
 
 
@@ -154,11 +178,12 @@ def followup(ctx):
         return
     since = ctx.now - timedelta(hours=ctx.cfg["llm"].get("followup_hours", 72))
     pending = [s for s in ctx.store.all()
-               if s["tier"] == "P1" and s["alerted_at"] and not s["summary"] and sources.parse_ts(s["alerted_at"]) >= since]
+               if s["tier"] == "P1" and s["alerted_at"] and not s["summary"] and s.get("needs_followup", True)
+               and sources.parse_ts(s["alerted_at"]) >= since]
     if not pending:
         return
     pending.sort(key=lambda s: priority_key(s["item"]))
-    pending = pending[: ctx.cfg["llm"]["max_p1_per_run"]]
+    pending = pending[: ctx.cfg["tiers"]["p1"]["max_individual_alerts"]]
     summaries = summarize.summarize([s["item"] for s in pending], ctx.cfg, ctx.cfg["llm"]["p1_model"])
     for state in pending:
         state["summary"] = summaries.get(state["item"]["id"])
@@ -228,7 +253,7 @@ def digest(ctx, slot):
     ctx.write(rel, text)
     missing = any(not s["summary"] for s in shown[: cfg["max_summarized"]])
     note = summarize.last_error if missing else None
-    notify.telegram(render.telegram_digest(shown, title, ctx.github_url(rel), note=note), ctx.cfg, ctx.dry_run)
+    notify.telegram(render.telegram_digest(shown, title, ctx.github_url(rel), note=note, cfg=ctx.cfg), ctx.cfg, ctx.dry_run)
     for s in states:
         s["digested_at"] = ctx.now.isoformat()
         ctx.store.put(s)
