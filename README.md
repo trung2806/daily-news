@@ -97,10 +97,15 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
-_Chưa có._
+- [2026/10/30-AM](reports/2026/10/30-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
-_Chưa có._
+- [🔴 CVE-2026-97229: Integer Overflow or Wraparound in GitLab](alerts/2026/10/2026-10-30_1054_CVE-2026-97229.md)
+- [🔴 CVE-2026-76418: Cisco Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense Software Remote Access SSL VPN Tunnel Denial of Service Vulnerability](alerts/2026/10/2026-10-30_1054_CVE-2026-76418.md)
+- [🔴 CVE-2026-48356: Adobe Commerce | Unrestricted Upload of File with Dangerous Type (CWE-434)](alerts/2026/10/2026-10-30_1054_CVE-2026-48356.md)
+- [🔴 CVE-2026-46300: net: skbuff: preserve shared-frag marker during coalescing](alerts/2026/10/2026-10-30_1054_CVE-2026-46300.md)
+- [🔴 CVE-2026-41709: ESX insufficient logging vulnerability](alerts/2026/10/2026-10-30_1054_CVE-2026-41709.md)
+- [🔴 CVE-2026-111497: Out-of-Bounds Write in Google Brotli Decoder](alerts/2026/10/2026-10-30_1054_CVE-2026-111497.md)
 
 <!-- AUTO:END -->
