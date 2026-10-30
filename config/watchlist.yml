@@ -26,19 +26,26 @@ groups:
     label: Microsoft & ảo hóa
     entries:
       - vendor: microsoft
-        product: windows|exchange|sharepoint|sql server|active directory|hyper-v
+        product: windows|win32k|dwm|exchange|sharepoint|sql server|active directory|hyper-v|kerberos|remote desktop
       - text: '\bhyper-v\b'
+      - vendor: microsoft
+        product: 'office|365 apps|outlook|\bword\b|excel|powerpoint|publisher|\bproject\b|visio|\baccess\b|visual basic for applications'
+      - vendor: microsoft
+        product: '\.net\b'
+      # KEV names many Windows components without the word "Windows".
+      - vendor: microsoft
+        product: 'smb|netlogon|http\.sys|http protocol stack|afd\.sys|ancillary function|csrss|client-server run-time|\bgdi\b|graphics|directx|dxgkrnl|task scheduler|\biis\b|internet information services|cryptographic|winverifytrust|font driver|update notification|xml core|input method editor|mshtml|open management infrastructure'
       - vendor: vmware|broadcom
-        product: vcenter|esxi|workstation|fusion|cloud foundation|aria|tools
+        product: vcenter|\besxi?\b|workstation|fusion|cloud foundation|aria|tools
 
   linux_oss:
     label: Linux & hạ tầng mã nguồn mở
     entries:
       - vendor: '^linux$'
-        product: '^linux$'
+        product: '^(linux|linux kernel|kernel)$'
       - product: '^openssl$'
       - product: openssh
-      - product: '^nginx'
+      - product: '^nginx( plus| open source)?$'
       - vendor: apache
         product: 'http server|httpd'
       - product: kubernetes
