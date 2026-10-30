@@ -7,7 +7,8 @@ Bot quét nguồn CVE 15 phút một lần trên GitHub Actions. Lỗ hổng ngu
 ```
 GitHub Actions (mỗi 15 phút)
   ├─ cvelistV5 deltaLog ── CVE mới / cập nhật (kèm CVSS + SSVC của CISA Vulnrichment)
-  ├─ CISA KEV ─────────── CVE đang bị khai thác thực tế
+  ├─ CISA KEV ─────────── CVE đang bị khai thác thực tế (CISA đã xác minh)
+  ├─ VulnCheck KEV ────── CVE bị khai thác, rộng và sớm hơn CISA KEV, kèm link nguồn ghi nhận
   ├─ nuclei-templates ─── tín hiệu đã có exploit/detection công khai
   ├─ FIRST EPSS ────────── xác suất bị khai thác
   └─ GitHub Advisory ──── phiên bản vá theo package
@@ -20,8 +21,10 @@ GitHub Actions (mỗi 15 phút)
 
 | Mức | Điều kiện mặc định | Gửi |
 |---|---|---|
-| **P1** | Mới vào CISA KEV; hoặc thuộc watchlist và (CVSS ≥ 9, EPSS ≥ 0.5 hoặc đã có exploit công khai) | Telegram ngay |
-| **P2** | Thuộc watchlist và CVSS ≥ 8; hoặc CVSS ≥ 9 tấn công qua mạng; hoặc có exploit và CVSS ≥ 7 | Bản tin 06:00 / 18:00 |
+| **P1** | Có bằng chứng khai thác: mới vào CISA KEV; hoặc thuộc watchlist và (mới vào VulnCheck KEV, EPSS ≥ 0.5, hoặc có exploit công khai với CVSS ≥ 7) | Telegram ngay |
+| **P2** | Thuộc watchlist và CVSS ≥ 8 (CVSS ≥ 9 được đánh dấu 🟠 và xếp đầu); CVE ngoài watchlist mới vào VulnCheck KEV; CVSS ≥ 9 tấn công qua mạng; có exploit và CVSS ≥ 7 | Bản tin 06:00 / 18:00 |
+
+CVSS cao nhưng chưa có dấu hiệu khai thác không gửi cảnh báo tức thì. Lý do là các hãng công bố theo đợt (Patch Tuesday, Oracle CPU), nên cảnh báo theo điểm sẽ bắn hàng chục tin trong một lần chạy. Nếu một lần chạy có hơn 5 cảnh báo P1, 5 CVE ưu tiên cao nhất được gửi riêng, phần còn lại gộp vào một tin và được phân tích chi tiết trong bản tin kế tiếp.
 
 Mọi ngưỡng nằm trong [`config/settings.yml`](config/settings.yml).
 
@@ -50,6 +53,7 @@ Lệnh in ra một token dài hạn, dùng cho bước 4.
 | `CLAUDE_CODE_OAUTH_TOKEN` | token từ bước 2 |
 | `TELEGRAM_BOT_TOKEN` | token từ BotFather |
 | `TELEGRAM_CHAT_ID` | chat id từ bước 3 |
+| `VULNCHECK_API_TOKEN` | token từ [vulncheck.com](https://vulncheck.com) (tài khoản Community miễn phí), mục API Tokens |
 
 Thiếu secret nào thì bot bỏ qua tính năng đó và vẫn chạy phần còn lại.
 

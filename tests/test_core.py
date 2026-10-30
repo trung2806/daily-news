@@ -51,7 +51,9 @@ def test_watchlist_avoids_obvious_false_positives():
 
 
 def test_tiers():
-    assert classify(item_of(record("Fortinet", "FortiOS", 9.8)), CFG, False)[0] == "P1"
+    # Critical score without exploitation evidence goes to the digest, not an instant alert.
+    tier, reasons = classify(item_of(record("Fortinet", "FortiOS", 9.8)), CFG, False)
+    assert tier == "P2" and "nghiêm trọng" in reasons[0]
     assert classify(item_of(record("Fortinet", "FortiOS", 8.5)), CFG, False)[0] == "P2"
     assert classify(item_of(record("Fortinet", "FortiOS", 7.5)), CFG, False)[0] is None
     assert classify(item_of(record("Fortinet", "FortiOS", 5.0)), CFG, False)[0] is None
@@ -73,6 +75,31 @@ def test_kev_and_exploit_signals():
     item = item_of(record("Apache", "Apache Tomcat", adp=adp))
     assert item["cvss"]["score"] == 8.1 and item["ssvc_exploitation"] == "poc"
     assert classify(item, CFG, False)[0] == "P1"
+
+
+def test_vulncheck_kev():
+    vc = {"date_added": "2026-10-30", "in_cisa_kev": False, "ransomware": None, "reported": [], "exploits": []}
+    watched = item_of(record("Cisco", "Adaptive Security Appliance", 5.3))
+    watched["vulncheck"] = vc
+    assert classify(watched, CFG, False, True)[0] == "P1"
+    # Not newly added and below the exploit score floor: nothing to alert on.
+    assert classify(watched, CFG, False, False)[0] is None
+    other = item_of(record("acme", "widget", 5.3))
+    other["vulncheck"] = vc
+    assert classify(other, CFG, False, True) == ("P2", ["VulnCheck ghi nhận đang bị khai thác"])
+
+
+def test_watchlist_exploit_needs_minimum_score():
+    adp = [{"metrics": [{"other": {"type": "ssvc", "content": {"options": [{"Exploitation": "poc"}]}}}]}]
+    low = item_of(record("Fortinet", "FortiOS", 5.0, adp=adp))
+    assert classify(low, CFG, False)[0] is None
+
+
+def test_group_message_lists_every_alert():
+    from cvewatch.render import telegram_alert_group
+    states = [{"item": item_of(record("Fortinet", "FortiOS", 9.0)), "reasons": ["r"]} for _ in range(3)]
+    text = telegram_alert_group(states, {})
+    assert "Thêm 3 cảnh báo P1" in text and text.count("CVE-2026-0001") == 3
 
 
 def test_rejected_record_is_skipped():

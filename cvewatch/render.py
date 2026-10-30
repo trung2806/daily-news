@@ -4,6 +4,7 @@ import os
 import re
 
 from .model import exploit_signal
+from .scoring import is_critical
 
 NO_FIX = "Chưa có thông tin bản vá trong dữ liệu nguồn, theo dõi advisory của hãng."
 NO_LLM = "_Tóm tắt tiếng Việt chưa có (LLM không khả dụng ở lần chạy này). Dưới đây là mô tả gốc._"
@@ -33,6 +34,8 @@ def exploit_label(item):
     parts = []
     if item["kev"]:
         parts.append("CISA KEV")
+    if item.get("vulncheck"):
+        parts.append("VulnCheck KEV")
     if item["public_exploit"]:
         parts.append("nuclei template")
     if item["ssvc_exploitation"] in ("poc", "active"):
@@ -66,6 +69,12 @@ def _detail_md(state, level):
     if item["kev"]:
         out += [f"**CISA KEV:** thêm ngày {item['kev']['date_added']}, hạn xử lý {item['kev']['due_date']}, "
                 f"ransomware: {item['kev']['ransomware']}", ""]
+    vc = item.get("vulncheck")
+    if vc:
+        out += [f"**VulnCheck KEV:** thêm ngày {vc['date_added']}, ransomware: {vc['ransomware'] or 'Unknown'}"
+                + (f", {len(vc['exploits'])} exploit công khai" if vc["exploits"] else ""), ""]
+        if vc["reported"]:
+            out += ["Nguồn ghi nhận khai thác:", _bullets(vc["reported"]), ""]
     versions = [f"{a['vendor']} {a['product']}: {'; '.join(a['versions'])}" for a in item["affected"] if a["versions"]]
     if versions:
         out += [f"{h} Phiên bản", _bullets(versions[:8]), ""]
@@ -170,17 +179,30 @@ def telegram_alert(state, url, note=None, followup=False):
     return "\n".join(lines)
 
 
-def telegram_digest(states, title, url, limit=15, note=None):
+def telegram_alert_group(states, links):
+    """One message for the P1 alerts beyond the per-run limit, so a vendor batch cannot flood the chat."""
+    lines = [f"🔴 <b>Thêm {len(states)} cảnh báo P1</b> (gom lại để tránh ngập tin)", ""]
+    for s in states:
+        i = s["item"]
+        score = i["cvss"]["score"] if i["cvss"] else "-"
+        cve = f'<a href="{_h(links[i["id"]])}">{_h(i["id"])}</a>' if links.get(i["id"]) else f"<b>{_h(i['id'])}</b>"
+        lines.append(f"• {cve} {_h(product_label(i))} · CVSS {score} · {_h(s['reasons'][0])}")
+    lines += ["", "Phân tích chi tiết từng CVE sẽ có trong bản tin kế tiếp."]
+    return "\n".join(lines)
+
+
+def telegram_digest(states, title, url, limit=15, note=None, cfg=None):
     kev = sum(1 for s in states if s["item"]["kev"])
     watched = sum(1 for s in states if s["item"].get("watch_groups"))
     lines = [f"📰 <b>{_h(title)}</b>", f"{len(states)} CVE · {kev} KEV · {watched} watchlist", ""]
     for s in states[:limit]:
         i = s["item"]
-        tag = " 🔥" if exploit_signal(i) else ""
+        tag = " 🔥" if exploit_signal(i) else (" 🟠" if cfg and is_critical(i, cfg) else "")
         score = i["cvss"]["score"] if i["cvss"] else "-"
         lines.append(f"• <b>{_h(i['id'])}</b> {_h(product_label(i))} · CVSS {score}{tag}")
     if len(states) > limit:
         lines.append(f"… và {len(states) - limit} CVE khác")
+    lines.append("🔥 đang bị khai thác / có exploit · 🟠 nghiêm trọng, thuộc watchlist")
     if note:
         lines += ["", f"⚠️ Bản tin chưa có phân tích tiếng Việt: {_h(note)}."]
     if url:

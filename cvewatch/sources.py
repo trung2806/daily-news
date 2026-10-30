@@ -19,6 +19,7 @@ KEV_URLS = [
 NUCLEI_CVES = "https://raw.githubusercontent.com/projectdiscovery/nuclei-templates/main/cves.json"
 EPSS_API = "https://api.first.org/data/v1/epss"
 GHSA_API = "https://api.github.com/advisories"
+VULNCHECK_KEV = "https://api.vulncheck.com/v3/index/vulncheck-kev"
 
 
 def parse_ts(value):
@@ -132,3 +133,44 @@ def fetch_ghsa(cve_id):
                 "patched": vuln.get("first_patched_version"),
             })
     return facts
+
+
+def fetch_vulncheck_kev(pages=3):
+    """Newest VulnCheck KEV entries as {cve_id: entry}. Empty when VULNCHECK_API_TOKEN is not set.
+
+    VulnCheck KEV lists CVEs with public evidence of exploitation (vendor reports, threat intel,
+    news), usually earlier and wider than CISA KEV. Each entry links to that evidence.
+    """
+    token = os.environ.get("VULNCHECK_API_TOKEN")
+    if not token:
+        log.info("VulnCheck KEV: VULNCHECK_API_TOKEN not set, skipping")
+        return {}
+    # Docs show "Bearer <token>"; the generated SDK sends the bare token. Try both.
+    auth_values = [f"Bearer {token}", token]
+    out = {}
+    for page in range(1, pages + 1):
+        params = {"sort": "date_added", "order": "desc", "limit": 100, "page": page}
+        rows = None
+        while auth_values:
+            try:
+                data = http.get_json(VULNCHECK_KEV, params=params, timeout=60, retries=2,
+                                     headers={"Authorization": auth_values[0], "Accept": "application/json"})
+                rows = data.get("data") or []
+                break
+            except Exception as exc:
+                status = getattr(getattr(exc, "response", None), "status_code", None)
+                if status == 401 and len(auth_values) > 1:
+                    auth_values.pop(0)
+                    continue
+                log.warning("VulnCheck KEV: %s %s", status or "", type(exc).__name__)
+                return out
+        if rows is None:
+            return out
+        for entry in rows:
+            for cve_id in entry.get("cve") or []:
+                out.setdefault(cve_id, entry)
+        if len(rows) < 100:
+            break
+    newest = max((e.get("date_added") or "" for e in out.values()), default="")
+    log.info("VulnCheck KEV: %d entries, newest added %s", len(out), newest[:10] or "?")
+    return out

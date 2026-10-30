@@ -98,6 +98,7 @@ def _facts(item):
         "cvss": item["cvss"],
         "exploitation": {
             "in_cisa_kev": bool(item["kev"]),
+            "in_vulncheck_kev": bool(item.get("vulncheck")),
             "public_exploit_template": item["public_exploit"],
             "cisa_ssvc_exploitation": item["ssvc_exploitation"] or None,
             "epss": item["epss"][0] if item["epss"] else None,
@@ -106,6 +107,8 @@ def _facts(item):
     }
     if item["kev"]:
         facts["kev"] = {k: item["kev"][k] for k in ("required_action", "notes", "ransomware")}
+    if item.get("vulncheck"):
+        facts["vulncheck_kev"] = {k: item["vulncheck"][k] for k in ("ransomware", "reported", "exploits")}
     if item["ghsa"]:
         facts["package_fixes"] = item["ghsa"][:10]
     return facts
