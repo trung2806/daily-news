@@ -114,6 +114,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-119977: WordPress Core 4.7.0 - 7.1.3 - Unauthenticated Upgrade-Window Staged-Installer Remote Code Execution](alerts/2026/11/2026-11-04_0451_CVE-2026-119977.md)
 - [🔴 CVE-2026-118527: Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability](alerts/2026/10/2026-10-31_0408_CVE-2026-118527.md)
 - [🔴 CVE-2026-111357: Ivanti Connect Secure](alerts/2026/10/2026-10-31_0408_CVE-2026-111357.md)
 - [🔴 CVE-2026-101767: Oracle Corporation Oracle Application Object Library](alerts/2026/10/2026-10-30_1353_CVE-2026-101767.md)
