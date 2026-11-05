@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/05-AM](reports/2026/11/05-AM.md)
 - [2026/11/04-PM](reports/2026/11/04-PM.md)
 - [2026/11/04-AM](reports/2026/11/04-AM.md)
 - [2026/11/03-PM](reports/2026/11/03-PM.md)
@@ -116,6 +117,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2024-27834: Apple Multiple Products](alerts/2026/11/2026-11-05_0934_CVE-2024-27834.md)
 - [🔴 CVE-2026-119977: WordPress Core 4.7.0 - 7.1.3 - Unauthenticated Upgrade-Window Staged-Installer Remote Code Execution](alerts/2026/11/2026-11-04_0451_CVE-2026-119977.md)
 - [🔴 CVE-2026-118527: Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability](alerts/2026/10/2026-10-31_0408_CVE-2026-118527.md)
 - [🔴 CVE-2026-111357: Ivanti Connect Secure](alerts/2026/10/2026-10-31_0408_CVE-2026-111357.md)
