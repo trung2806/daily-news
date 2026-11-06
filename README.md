@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/07-AM](reports/2026/11/07-AM.md)
 - [2026/11/06-PM](reports/2026/11/06-PM.md)
 - [2026/11/06-AM](reports/2026/11/06-AM.md)
 - [2026/11/05-PM](reports/2026/11/05-PM.md)
@@ -114,10 +115,10 @@ python -m pytest -q tests
 - [2026/11/01-PM](reports/2026/11/01-PM.md)
 - [2026/11/01-AM](reports/2026/11/01-AM.md)
 - [2026/10/31-PM](reports/2026/10/31-PM.md)
-- [2026/10/31-AM](reports/2026/10/31-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-19868: SonicWall SonicOS SSLVPN](alerts/2026/11/2026-11-07_0628_CVE-2026-19868.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-06_0041_CVE-2026-123158.md)
 - [🔴 CVE-2024-27834: Apple Multiple Products](alerts/2026/11/2026-11-05_0934_CVE-2024-27834.md)
 - [🔴 CVE-2026-119977: WordPress Core 4.7.0 - 7.1.3 - Unauthenticated Upgrade-Window Staged-Installer Remote Code Execution](alerts/2026/11/2026-11-04_0451_CVE-2026-119977.md)
