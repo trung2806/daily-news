@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/09-PM](reports/2026/11/09-PM.md)
 - [2026/11/09-AM](reports/2026/11/09-AM.md)
 - [2026/11/08-PM](reports/2026/11/08-PM.md)
 - [2026/11/08-AM](reports/2026/11/08-AM.md)
@@ -114,10 +115,11 @@ python -m pytest -q tests
 - [2026/11/04-AM](reports/2026/11/04-AM.md)
 - [2026/11/03-PM](reports/2026/11/03-PM.md)
 - [2026/11/03-AM](reports/2026/11/03-AM.md)
-- [2026/11/02-PM](reports/2026/11/02-PM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-20320: Cisco Cisco BroadWorks](alerts/2026/11/2026-11-10_0214_CVE-2026-20320.md)
+- [🔴 CVE-2011-3923: Apache Struts](alerts/2026/11/2026-11-10_0214_CVE-2011-3923.md)
 - [🔴 CVE-2026-19868: SonicWall SonicOS SSLVPN](alerts/2026/11/2026-11-07_0628_CVE-2026-19868.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-06_0041_CVE-2026-123158.md)
 - [🔴 CVE-2024-27834: Apple Multiple Products](alerts/2026/11/2026-11-05_0934_CVE-2024-27834.md)
