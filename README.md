@@ -118,6 +118,12 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-20320: Cisco BroadWorks](alerts/2026/11/2026-11-11_0534_CVE-2026-20320.md)
+- [🔴 CVE-2026-125350: Google Chromium](alerts/2026/11/2026-11-11_0534_CVE-2026-125350.md)
+- [🔴 CVE-2026-124194: Microsoft Outlook Spoofing Vulnerability](alerts/2026/11/2026-11-11_0534_CVE-2026-124194.md)
+- [🔴 CVE-2026-116606: Authentication Bypass Allows Global Configuration Restore in Barracuda Email Security Gateway](alerts/2026/11/2026-11-11_0534_CVE-2026-116606.md)
+- [🔴 CVE-2026-111793: Openwave Messaging Limited Webtop Media Transcoder](alerts/2026/11/2026-11-11_0534_CVE-2026-111793.md)
+- [🔴 CVE-2026-111560: OS Command Injection in Barracuda Appliances](alerts/2026/11/2026-11-11_0534_CVE-2026-111560.md)
 - [🔴 CVE-2026-123218: IBM Aspera Faspex Authorization Bypass](alerts/2026/11/2026-11-10_1700_CVE-2026-123218.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-10_0916_CVE-2026-123158.md)
 - [🔴 CVE-2026-116779: FreeSWITCH: Inbound SIP MESSAGE can select the api chat proto and run FreeSWITCH API commands](alerts/2026/11/2026-11-10_0916_CVE-2026-116779.md)
@@ -127,11 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-19868: SonicWall SonicOS SSLVPN](alerts/2026/11/2026-11-07_0628_CVE-2026-19868.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-06_0041_CVE-2026-123158.md)
 - [🔴 CVE-2024-27834: Apple Multiple Products](alerts/2026/11/2026-11-05_0934_CVE-2024-27834.md)
-- [🔴 CVE-2026-119977: WordPress Core 4.7.0 - 7.1.3 - Unauthenticated Upgrade-Window Staged-Installer Remote Code Execution](alerts/2026/11/2026-11-04_0451_CVE-2026-119977.md)
-- [🔴 CVE-2026-118527: Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability](alerts/2026/10/2026-10-31_0408_CVE-2026-118527.md)
-- [🔴 CVE-2026-111357: Ivanti Connect Secure](alerts/2026/10/2026-10-31_0408_CVE-2026-111357.md)
-- [🔴 CVE-2026-101767: Oracle Corporation Oracle Application Object Library](alerts/2026/10/2026-10-30_1353_CVE-2026-101767.md)
-- [🔴 CVE-2026-97229: Integer Overflow or Wraparound in GitLab](alerts/2026/10/2026-10-30_1054_CVE-2026-97229.md)
-- [🔴 CVE-2026-76418: Cisco Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense Software Remote Access SSL VPN Tunnel Denial of Service Vulnerability](alerts/2026/10/2026-10-30_1054_CVE-2026-76418.md)
 
 <!-- AUTO:END -->
