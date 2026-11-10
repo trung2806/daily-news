@@ -118,6 +118,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-123218: IBM Aspera Faspex Authorization Bypass](alerts/2026/11/2026-11-10_1700_CVE-2026-123218.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-10_0916_CVE-2026-123158.md)
 - [🔴 CVE-2026-116779: FreeSWITCH: Inbound SIP MESSAGE can select the api chat proto and run FreeSWITCH API commands](alerts/2026/11/2026-11-10_0916_CVE-2026-116779.md)
 - [🔴 CVE-2026-102895: GPUStack: Authentication bypass via trusted loopback source (reverse-proxy TCP peer or X-GPUStack-Real-IP header) grants unauthenticated admin](alerts/2026/11/2026-11-10_0916_CVE-2026-102895.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-101767: Oracle Corporation Oracle Application Object Library](alerts/2026/10/2026-10-30_1353_CVE-2026-101767.md)
 - [🔴 CVE-2026-97229: Integer Overflow or Wraparound in GitLab](alerts/2026/10/2026-10-30_1054_CVE-2026-97229.md)
 - [🔴 CVE-2026-76418: Cisco Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense Software Remote Access SSL VPN Tunnel Denial of Service Vulnerability](alerts/2026/10/2026-10-30_1054_CVE-2026-76418.md)
-- [🔴 CVE-2026-48356: Adobe Commerce | Unrestricted Upload of File with Dangerous Type (CWE-434)](alerts/2026/10/2026-10-30_1054_CVE-2026-48356.md)
 
 <!-- AUTO:END -->
