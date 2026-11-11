@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/12-AM](reports/2026/11/12-AM.md)
 - [2026/11/11-PM](reports/2026/11/11-PM.md)
 - [2026/11/11-AM](reports/2026/11/11-AM.md)
 - [2026/11/10-PM](reports/2026/11/10-PM.md)
@@ -114,10 +115,11 @@ python -m pytest -q tests
 - [2026/11/06-PM](reports/2026/11/06-PM.md)
 - [2026/11/06-AM](reports/2026/11/06-AM.md)
 - [2026/11/05-PM](reports/2026/11/05-PM.md)
-- [2026/11/05-AM](reports/2026/11/05-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-54121: Active Directory Certificate Services Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2026-54121.md)
+- [🔴 CVE-2020-1337: Windows Print Spooler Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2020-1337.md)
 - [🔴 CVE-2026-20320: Cisco BroadWorks](alerts/2026/11/2026-11-11_0534_CVE-2026-20320.md)
 - [🔴 CVE-2026-125350: Google Chromium](alerts/2026/11/2026-11-11_0534_CVE-2026-125350.md)
 - [🔴 CVE-2026-124194: Microsoft Outlook Spoofing Vulnerability](alerts/2026/11/2026-11-11_0534_CVE-2026-124194.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-20320: Cisco Cisco BroadWorks](alerts/2026/11/2026-11-10_0214_CVE-2026-20320.md)
 - [🔴 CVE-2011-3923: Apache Struts](alerts/2026/11/2026-11-10_0214_CVE-2011-3923.md)
 - [🔴 CVE-2026-19868: SonicWall SonicOS SSLVPN](alerts/2026/11/2026-11-07_0628_CVE-2026-19868.md)
-- [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-06_0041_CVE-2026-123158.md)
-- [🔴 CVE-2024-27834: Apple Multiple Products](alerts/2026/11/2026-11-05_0934_CVE-2024-27834.md)
 
 <!-- AUTO:END -->
