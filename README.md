@@ -118,6 +118,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-13_0356_CVE-2026-123039.md)
 - [🔴 CVE-2026-54121: Active Directory Certificate Services Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2026-54121.md)
 - [🔴 CVE-2020-1337: Windows Print Spooler Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2020-1337.md)
 - [🔴 CVE-2026-20320: Cisco BroadWorks](alerts/2026/11/2026-11-11_0534_CVE-2026-20320.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-102895: GPUStack: Authentication bypass via trusted loopback source (reverse-proxy TCP peer or X-GPUStack-Real-IP header) grants unauthenticated admin](alerts/2026/11/2026-11-10_0916_CVE-2026-102895.md)
 - [🔴 CVE-2026-20320: Cisco Cisco BroadWorks](alerts/2026/11/2026-11-10_0214_CVE-2026-20320.md)
 - [🔴 CVE-2011-3923: Apache Struts](alerts/2026/11/2026-11-10_0214_CVE-2011-3923.md)
-- [🔴 CVE-2026-19868: SonicWall SonicOS SSLVPN](alerts/2026/11/2026-11-07_0628_CVE-2026-19868.md)
 
 <!-- AUTO:END -->
