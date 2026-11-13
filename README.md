@@ -118,6 +118,8 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-14_0515_CVE-2026-123039.md)
+- [🔴 CVE-2026-114713: UnrealIRCd UnrealIRCd](alerts/2026/11/2026-11-14_0515_CVE-2026-114713.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-13_0356_CVE-2026-123039.md)
 - [🔴 CVE-2026-54121: Active Directory Certificate Services Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2026-54121.md)
 - [🔴 CVE-2020-1337: Windows Print Spooler Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2020-1337.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-10_0916_CVE-2026-123158.md)
 - [🔴 CVE-2026-116779: FreeSWITCH: Inbound SIP MESSAGE can select the api chat proto and run FreeSWITCH API commands](alerts/2026/11/2026-11-10_0916_CVE-2026-116779.md)
 - [🔴 CVE-2026-102895: GPUStack: Authentication bypass via trusted loopback source (reverse-proxy TCP peer or X-GPUStack-Real-IP header) grants unauthenticated admin](alerts/2026/11/2026-11-10_0916_CVE-2026-102895.md)
-- [🔴 CVE-2026-20320: Cisco Cisco BroadWorks](alerts/2026/11/2026-11-10_0214_CVE-2026-20320.md)
-- [🔴 CVE-2011-3923: Apache Struts](alerts/2026/11/2026-11-10_0214_CVE-2011-3923.md)
 
 <!-- AUTO:END -->
