@@ -118,6 +118,8 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-121653: ivanti Endpoint Manager](alerts/2026/11/2026-11-16_0259_CVE-2026-121653.md)
+- [🔴 CVE-2026-119618: Apache HTTP Server: mod_http2: heap corruption and RCE in assign_headers](alerts/2026/11/2026-11-16_0259_CVE-2026-119618.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-14_0515_CVE-2026-123039.md)
 - [🔴 CVE-2026-114713: UnrealIRCd UnrealIRCd](alerts/2026/11/2026-11-14_0515_CVE-2026-114713.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-13_0356_CVE-2026-123039.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-111560: OS Command Injection in Barracuda Appliances](alerts/2026/11/2026-11-11_0534_CVE-2026-111560.md)
 - [🔴 CVE-2026-123218: IBM Aspera Faspex Authorization Bypass](alerts/2026/11/2026-11-10_1700_CVE-2026-123218.md)
 - [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-10_0916_CVE-2026-123158.md)
-- [🔴 CVE-2026-116779: FreeSWITCH: Inbound SIP MESSAGE can select the api chat proto and run FreeSWITCH API commands](alerts/2026/11/2026-11-10_0916_CVE-2026-116779.md)
-- [🔴 CVE-2026-102895: GPUStack: Authentication bypass via trusted loopback source (reverse-proxy TCP peer or X-GPUStack-Real-IP header) grants unauthenticated admin](alerts/2026/11/2026-11-10_0916_CVE-2026-102895.md)
 
 <!-- AUTO:END -->
