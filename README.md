@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/17-PM](reports/2026/11/17-PM.md)
 - [2026/11/17-AM](reports/2026/11/17-AM.md)
 - [2026/11/16-PM](reports/2026/11/16-PM.md)
 - [2026/11/16-AM](reports/2026/11/16-AM.md)
@@ -114,10 +115,11 @@ python -m pytest -q tests
 - [2026/11/12-AM](reports/2026/11/12-AM.md)
 - [2026/11/11-PM](reports/2026/11/11-PM.md)
 - [2026/11/11-AM](reports/2026/11/11-AM.md)
-- [2026/11/10-PM](reports/2026/11/10-PM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-128023: FrankenPHP before 1.13.0 Authentication Bypass via Dot-Form Header Name Aliasing](alerts/2026/11/2026-11-18_0040_CVE-2026-128023.md)
+- [🔴 CVE-2026-128015: FrankenPHP before 1.13.4 Use-After-Free via putenv() During Request Shutdown](alerts/2026/11/2026-11-18_0040_CVE-2026-128015.md)
 - [🔴 CVE-2026-121653: ivanti Endpoint Manager](alerts/2026/11/2026-11-16_0259_CVE-2026-121653.md)
 - [🔴 CVE-2026-119618: Apache HTTP Server: mod_http2: heap corruption and RCE in assign_headers](alerts/2026/11/2026-11-16_0259_CVE-2026-119618.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-14_0515_CVE-2026-123039.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-116606: Authentication Bypass Allows Global Configuration Restore in Barracuda Email Security Gateway](alerts/2026/11/2026-11-11_0534_CVE-2026-116606.md)
 - [🔴 CVE-2026-111793: Openwave Messaging Limited Webtop Media Transcoder](alerts/2026/11/2026-11-11_0534_CVE-2026-111793.md)
 - [🔴 CVE-2026-111560: OS Command Injection in Barracuda Appliances](alerts/2026/11/2026-11-11_0534_CVE-2026-111560.md)
-- [🔴 CVE-2026-123218: IBM Aspera Faspex Authorization Bypass](alerts/2026/11/2026-11-10_1700_CVE-2026-123218.md)
-- [🔴 CVE-2026-123158: OpenBSD OpenSSH](alerts/2026/11/2026-11-10_0916_CVE-2026-123158.md)
 
 <!-- AUTO:END -->
