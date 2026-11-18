@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/18-PM](reports/2026/11/18-PM.md)
 - [2026/11/18-AM](reports/2026/11/18-AM.md)
 - [2026/11/17-PM](reports/2026/11/17-PM.md)
 - [2026/11/17-AM](reports/2026/11/17-AM.md)
@@ -114,10 +115,10 @@ python -m pytest -q tests
 - [2026/11/13-AM](reports/2026/11/13-AM.md)
 - [2026/11/12-PM](reports/2026/11/12-PM.md)
 - [2026/11/12-AM](reports/2026/11/12-AM.md)
-- [2026/11/11-PM](reports/2026/11/11-PM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-114938: Oracle Corporation Oracle Java SE](alerts/2026/11/2026-11-18_2333_CVE-2026-114938.md)
 - [🔴 CVE-2026-115731: Report Deserialization Code Execution](alerts/2026/11/2026-11-18_1412_CVE-2026-115731.md)
 - [🔴 CVE-2026-128023: FrankenPHP before 1.13.0 Authentication Bypass via Dot-Form Header Name Aliasing](alerts/2026/11/2026-11-18_0040_CVE-2026-128023.md)
 - [🔴 CVE-2026-128015: FrankenPHP before 1.13.4 Use-After-Free via putenv() During Request Shutdown](alerts/2026/11/2026-11-18_0040_CVE-2026-128015.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-125350: Google Chromium](alerts/2026/11/2026-11-11_0534_CVE-2026-125350.md)
 - [🔴 CVE-2026-124194: Microsoft Outlook Spoofing Vulnerability](alerts/2026/11/2026-11-11_0534_CVE-2026-124194.md)
 - [🔴 CVE-2026-116606: Authentication Bypass Allows Global Configuration Restore in Barracuda Email Security Gateway](alerts/2026/11/2026-11-11_0534_CVE-2026-116606.md)
-- [🔴 CVE-2026-111793: Openwave Messaging Limited Webtop Media Transcoder](alerts/2026/11/2026-11-11_0534_CVE-2026-111793.md)
 
 <!-- AUTO:END -->
