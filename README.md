@@ -118,6 +118,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-115731: Report Deserialization Code Execution](alerts/2026/11/2026-11-18_1412_CVE-2026-115731.md)
 - [🔴 CVE-2026-128023: FrankenPHP before 1.13.0 Authentication Bypass via Dot-Form Header Name Aliasing](alerts/2026/11/2026-11-18_0040_CVE-2026-128023.md)
 - [🔴 CVE-2026-128015: FrankenPHP before 1.13.4 Use-After-Free via putenv() During Request Shutdown](alerts/2026/11/2026-11-18_0040_CVE-2026-128015.md)
 - [🔴 CVE-2026-121653: ivanti Endpoint Manager](alerts/2026/11/2026-11-16_0259_CVE-2026-121653.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-124194: Microsoft Outlook Spoofing Vulnerability](alerts/2026/11/2026-11-11_0534_CVE-2026-124194.md)
 - [🔴 CVE-2026-116606: Authentication Bypass Allows Global Configuration Restore in Barracuda Email Security Gateway](alerts/2026/11/2026-11-11_0534_CVE-2026-116606.md)
 - [🔴 CVE-2026-111793: Openwave Messaging Limited Webtop Media Transcoder](alerts/2026/11/2026-11-11_0534_CVE-2026-111793.md)
-- [🔴 CVE-2026-111560: OS Command Injection in Barracuda Appliances](alerts/2026/11/2026-11-11_0534_CVE-2026-111560.md)
 
 <!-- AUTO:END -->
