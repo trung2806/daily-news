@@ -118,6 +118,11 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-90817: Vanderbilt University Research Electronic Data Capture (REDCap)](alerts/2026/11/2026-11-19_1107_CVE-2026-90817.md)
+- [🔴 CVE-2026-90436: Apache Axis 1.x (EOL): unauthenticated remote class instantiation via SOAP fault exceptionName](alerts/2026/11/2026-11-19_1107_CVE-2026-90436.md)
+- [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-19_1107_CVE-2026-76466.md)
+- [🔴 CVE-2026-40217: BerriAI LiteLLM](alerts/2026/11/2026-11-19_1107_CVE-2026-40217.md)
+- [🔴 CVE-2024-10441: Synology DiskStation Manager (DSM)](alerts/2026/11/2026-11-19_1107_CVE-2024-10441.md)
 - [🔴 CVE-2026-114938: Oracle Corporation Oracle Java SE](alerts/2026/11/2026-11-18_2333_CVE-2026-114938.md)
 - [🔴 CVE-2026-115731: Report Deserialization Code Execution](alerts/2026/11/2026-11-18_1412_CVE-2026-115731.md)
 - [🔴 CVE-2026-128023: FrankenPHP before 1.13.0 Authentication Bypass via Dot-Form Header Name Aliasing](alerts/2026/11/2026-11-18_0040_CVE-2026-128023.md)
@@ -128,10 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-114713: UnrealIRCd UnrealIRCd](alerts/2026/11/2026-11-14_0515_CVE-2026-114713.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-13_0356_CVE-2026-123039.md)
 - [🔴 CVE-2026-54121: Active Directory Certificate Services Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2026-54121.md)
-- [🔴 CVE-2020-1337: Windows Print Spooler Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2020-1337.md)
-- [🔴 CVE-2026-20320: Cisco BroadWorks](alerts/2026/11/2026-11-11_0534_CVE-2026-20320.md)
-- [🔴 CVE-2026-125350: Google Chromium](alerts/2026/11/2026-11-11_0534_CVE-2026-125350.md)
-- [🔴 CVE-2026-124194: Microsoft Outlook Spoofing Vulnerability](alerts/2026/11/2026-11-11_0534_CVE-2026-124194.md)
-- [🔴 CVE-2026-116606: Authentication Bypass Allows Global Configuration Restore in Barracuda Email Security Gateway](alerts/2026/11/2026-11-11_0534_CVE-2026-116606.md)
 
 <!-- AUTO:END -->
