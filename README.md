@@ -118,6 +118,8 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123890.md)
+- [🔴 CVE-2026-123007: NGINX ngx_http_v2_module vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123007.md)
 - [🔴 CVE-2026-90817: Vanderbilt University Research Electronic Data Capture (REDCap)](alerts/2026/11/2026-11-19_1107_CVE-2026-90817.md)
 - [🔴 CVE-2026-90436: Apache Axis 1.x (EOL): unauthenticated remote class instantiation via SOAP fault exceptionName](alerts/2026/11/2026-11-19_1107_CVE-2026-90436.md)
 - [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-19_1107_CVE-2026-76466.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-119618: Apache HTTP Server: mod_http2: heap corruption and RCE in assign_headers](alerts/2026/11/2026-11-16_0259_CVE-2026-119618.md)
 - [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-14_0515_CVE-2026-123039.md)
 - [🔴 CVE-2026-114713: UnrealIRCd UnrealIRCd](alerts/2026/11/2026-11-14_0515_CVE-2026-114713.md)
-- [🔴 CVE-2026-123039: Local privilege escalation to root in the DynamicCLI daemon via local world-writable control socket](alerts/2026/11/2026-11-13_0356_CVE-2026-123039.md)
-- [🔴 CVE-2026-54121: Active Directory Certificate Services Elevation of Privilege Vulnerability](alerts/2026/11/2026-11-12_0640_CVE-2026-54121.md)
 
 <!-- AUTO:END -->
