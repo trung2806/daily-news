@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/21-PM](reports/2026/11/21-PM.md)
 - [2026/11/21-AM](reports/2026/11/21-AM.md)
 - [2026/11/20-PM](reports/2026/11/20-PM.md)
 - [2026/11/20-AM](reports/2026/11/20-AM.md)
@@ -114,7 +115,6 @@ python -m pytest -q tests
 - [2026/11/16-AM](reports/2026/11/16-AM.md)
 - [2026/11/15-PM](reports/2026/11/15-PM.md)
 - [2026/11/15-AM](reports/2026/11/15-AM.md)
-- [2026/11/14-PM](reports/2026/11/14-PM.md)
 
 ### Cảnh báo P1 gần nhất
 
