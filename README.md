@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/21-AM](reports/2026/11/21-AM.md)
 - [2026/11/20-PM](reports/2026/11/20-PM.md)
 - [2026/11/20-AM](reports/2026/11/20-AM.md)
 - [2026/11/19-PM](reports/2026/11/19-PM.md)
@@ -114,10 +115,13 @@ python -m pytest -q tests
 - [2026/11/15-PM](reports/2026/11/15-PM.md)
 - [2026/11/15-AM](reports/2026/11/15-AM.md)
 - [2026/11/14-PM](reports/2026/11/14-PM.md)
-- [2026/11/14-AM](reports/2026/11/14-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-76466.md)
+- [🔴 CVE-2026-129448: Apache Roller: Unauthenticated deserialization in the XML-RPC endpoint (releases before 6.1.5)](alerts/2026/11/2026-11-21_0721_CVE-2026-129448.md)
+- [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-123890.md)
+- [🔴 CVE-2025-42884: JNDI Injection vulnerability in SAP NetWeaver Enterprise Portal](alerts/2026/11/2026-11-21_0721_CVE-2025-42884.md)
 - [🔴 CVE-2026-129292: PHP-FPM status endpoint XSS via unescaped user and script fields](alerts/2026/11/2026-11-21_0149_CVE-2026-129292.md)
 - [🔴 CVE-2026-115560: Session serializer mismatch can lead to remote code execution](alerts/2026/11/2026-11-21_0149_CVE-2026-115560.md)
 - [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123890.md)
@@ -129,9 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2024-10441: Synology DiskStation Manager (DSM)](alerts/2026/11/2026-11-19_1107_CVE-2024-10441.md)
 - [🔴 CVE-2026-114938: Oracle Corporation Oracle Java SE](alerts/2026/11/2026-11-18_2333_CVE-2026-114938.md)
 - [🔴 CVE-2026-115731: Report Deserialization Code Execution](alerts/2026/11/2026-11-18_1412_CVE-2026-115731.md)
-- [🔴 CVE-2026-128023: FrankenPHP before 1.13.0 Authentication Bypass via Dot-Form Header Name Aliasing](alerts/2026/11/2026-11-18_0040_CVE-2026-128023.md)
-- [🔴 CVE-2026-128015: FrankenPHP before 1.13.4 Use-After-Free via putenv() During Request Shutdown](alerts/2026/11/2026-11-18_0040_CVE-2026-128015.md)
-- [🔴 CVE-2026-121653: ivanti Endpoint Manager](alerts/2026/11/2026-11-16_0259_CVE-2026-121653.md)
-- [🔴 CVE-2026-119618: Apache HTTP Server: mod_http2: heap corruption and RCE in assign_headers](alerts/2026/11/2026-11-16_0259_CVE-2026-119618.md)
 
 <!-- AUTO:END -->
