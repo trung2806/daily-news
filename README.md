@@ -118,6 +118,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-129289: PHP-FPM request smuggling through an unread HTTP request body](alerts/2026/11/2026-11-22_0405_CVE-2026-129289.md)
 - [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-76466.md)
 - [🔴 CVE-2026-129448: Apache Roller: Unauthenticated deserialization in the XML-RPC endpoint (releases before 6.1.5)](alerts/2026/11/2026-11-21_0721_CVE-2026-129448.md)
 - [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-123890.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-40217: BerriAI LiteLLM](alerts/2026/11/2026-11-19_1107_CVE-2026-40217.md)
 - [🔴 CVE-2024-10441: Synology DiskStation Manager (DSM)](alerts/2026/11/2026-11-19_1107_CVE-2024-10441.md)
 - [🔴 CVE-2026-114938: Oracle Corporation Oracle Java SE](alerts/2026/11/2026-11-18_2333_CVE-2026-114938.md)
-- [🔴 CVE-2026-115731: Report Deserialization Code Execution](alerts/2026/11/2026-11-18_1412_CVE-2026-115731.md)
 
 <!-- AUTO:END -->
