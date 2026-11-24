@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/24-AM](reports/2026/11/24-AM.md)
 - [2026/11/23-PM](reports/2026/11/23-PM.md)
 - [2026/11/23-AM](reports/2026/11/23-AM.md)
 - [2026/11/22-PM](reports/2026/11/22-PM.md)
@@ -114,10 +115,11 @@ python -m pytest -q tests
 - [2026/11/18-PM](reports/2026/11/18-PM.md)
 - [2026/11/18-AM](reports/2026/11/18-AM.md)
 - [2026/11/17-PM](reports/2026/11/17-PM.md)
-- [2026/11/17-AM](reports/2026/11/17-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-134624: MailAssure / SpamExperts: Server-Side Request Forgery in relay LDAP synchronisation connection check](alerts/2026/11/2026-11-24_1330_CVE-2026-134624.md)
+- [🔴 CVE-2026-133968: Project MONAI MONAI Label](alerts/2026/11/2026-11-24_1330_CVE-2026-133968.md)
 - [🔴 CVE-2026-129289: PHP-FPM request smuggling through an unread HTTP request body](alerts/2026/11/2026-11-22_0405_CVE-2026-129289.md)
 - [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-76466.md)
 - [🔴 CVE-2026-129448: Apache Roller: Unauthenticated deserialization in the XML-RPC endpoint (releases before 6.1.5)](alerts/2026/11/2026-11-21_0721_CVE-2026-129448.md)
@@ -131,7 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-90436: Apache Axis 1.x (EOL): unauthenticated remote class instantiation via SOAP fault exceptionName](alerts/2026/11/2026-11-19_1107_CVE-2026-90436.md)
 - [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-19_1107_CVE-2026-76466.md)
 - [🔴 CVE-2026-40217: BerriAI LiteLLM](alerts/2026/11/2026-11-19_1107_CVE-2026-40217.md)
-- [🔴 CVE-2024-10441: Synology DiskStation Manager (DSM)](alerts/2026/11/2026-11-19_1107_CVE-2024-10441.md)
-- [🔴 CVE-2026-114938: Oracle Corporation Oracle Java SE](alerts/2026/11/2026-11-18_2333_CVE-2026-114938.md)
 
 <!-- AUTO:END -->
