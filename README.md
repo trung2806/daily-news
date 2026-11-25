@@ -118,6 +118,7 @@ python -m pytest -q tests
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-103406: Session Smart Conductor: An unauthenticated attacker causes arbitrary command execution during key management.](alerts/2026/11/2026-11-26_0342_CVE-2026-103406.md)
 - [🔴 CVE-2026-132224: Optimizely Web Experimentation](alerts/2026/11/2026-11-25_0936_CVE-2026-132224.md)
 - [🔴 CVE-2026-132165: Drupal Core Remote Code Execution Vulnerability](alerts/2026/11/2026-11-25_0936_CVE-2026-132165.md)
 - [🔴 CVE-2026-131914: Deserialization of untrusted data in CodePlex AntiCSRF](alerts/2026/11/2026-11-25_0936_CVE-2026-131914.md)
@@ -132,6 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-115560: Session serializer mismatch can lead to remote code execution](alerts/2026/11/2026-11-21_0149_CVE-2026-115560.md)
 - [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123890.md)
 - [🔴 CVE-2026-123007: NGINX ngx_http_v2_module vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123007.md)
-- [🔴 CVE-2026-90817: Vanderbilt University Research Electronic Data Capture (REDCap)](alerts/2026/11/2026-11-19_1107_CVE-2026-90817.md)
 
 <!-- AUTO:END -->
