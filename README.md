@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/25-AM](reports/2026/11/25-AM.md)
 - [2026/11/24-PM](reports/2026/11/24-PM.md)
 - [2026/11/24-AM](reports/2026/11/24-AM.md)
 - [2026/11/23-PM](reports/2026/11/23-PM.md)
@@ -114,10 +115,12 @@ python -m pytest -q tests
 - [2026/11/19-PM](reports/2026/11/19-PM.md)
 - [2026/11/19-AM](reports/2026/11/19-AM.md)
 - [2026/11/18-PM](reports/2026/11/18-PM.md)
-- [2026/11/18-AM](reports/2026/11/18-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-132224: Optimizely Web Experimentation](alerts/2026/11/2026-11-25_0936_CVE-2026-132224.md)
+- [🔴 CVE-2026-132165: Drupal Core Remote Code Execution Vulnerability](alerts/2026/11/2026-11-25_0936_CVE-2026-132165.md)
+- [🔴 CVE-2026-131914: Deserialization of untrusted data in CodePlex AntiCSRF](alerts/2026/11/2026-11-25_0936_CVE-2026-131914.md)
 - [🔴 CVE-2026-134624: MailAssure / SpamExperts: Server-Side Request Forgery in relay LDAP synchronisation connection check](alerts/2026/11/2026-11-24_1330_CVE-2026-134624.md)
 - [🔴 CVE-2026-133968: Project MONAI MONAI Label](alerts/2026/11/2026-11-24_1330_CVE-2026-133968.md)
 - [🔴 CVE-2026-129289: PHP-FPM request smuggling through an unread HTTP request body](alerts/2026/11/2026-11-22_0405_CVE-2026-129289.md)
@@ -130,8 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123890.md)
 - [🔴 CVE-2026-123007: NGINX ngx_http_v2_module vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123007.md)
 - [🔴 CVE-2026-90817: Vanderbilt University Research Electronic Data Capture (REDCap)](alerts/2026/11/2026-11-19_1107_CVE-2026-90817.md)
-- [🔴 CVE-2026-90436: Apache Axis 1.x (EOL): unauthenticated remote class instantiation via SOAP fault exceptionName](alerts/2026/11/2026-11-19_1107_CVE-2026-90436.md)
-- [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-19_1107_CVE-2026-76466.md)
-- [🔴 CVE-2026-40217: BerriAI LiteLLM](alerts/2026/11/2026-11-19_1107_CVE-2026-40217.md)
 
 <!-- AUTO:END -->
