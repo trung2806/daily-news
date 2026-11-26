@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/26-AM](reports/2026/11/26-AM.md)
 - [2026/11/25-PM](reports/2026/11/25-PM.md)
 - [2026/11/25-AM](reports/2026/11/25-AM.md)
 - [2026/11/24-PM](reports/2026/11/24-PM.md)
@@ -114,24 +115,23 @@ python -m pytest -q tests
 - [2026/11/20-PM](reports/2026/11/20-PM.md)
 - [2026/11/20-AM](reports/2026/11/20-AM.md)
 - [2026/11/19-PM](reports/2026/11/19-PM.md)
-- [2026/11/19-AM](reports/2026/11/19-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-47892: Spring Framework Header Predicate Bypass in WebFlux Functional Endpoints](alerts/2026/11/2026-11-26_1014_CVE-2026-47892.md)
+- [🔴 CVE-2026-47884: Spring Framework Improper Path Limitation in XsltView](alerts/2026/11/2026-11-26_1014_CVE-2026-47884.md)
+- [🔴 CVE-2026-133469: Xen Orchestra: Empty-object login token](alerts/2026/11/2026-11-26_1014_CVE-2026-133469.md)
+- [🔴 CVE-2026-133324: Mitel MiCollab](alerts/2026/11/2026-11-26_1014_CVE-2026-133324.md)
+- [🔴 CVE-2026-133323: Mitel MiCollab](alerts/2026/11/2026-11-26_1014_CVE-2026-133323.md)
+- [🔴 CVE-2026-133311: Mitel MiCollab](alerts/2026/11/2026-11-26_1014_CVE-2026-133311.md)
+- [🔴 CVE-2026-133303: Mitel MiCollab](alerts/2026/11/2026-11-26_1014_CVE-2026-133303.md)
+- [🔴 CVE-2026-133275: Mitel MiCollab](alerts/2026/11/2026-11-26_1014_CVE-2026-133275.md)
+- [🔴 CVE-2026-103406: Session Smart Conductor: An unauthenticated attacker causes arbitrary command execution during key management.](alerts/2026/11/2026-11-26_1014_CVE-2026-103406.md)
+- [🔴 CVE-2025-41450: Authentication bypass with privileged access in Danfoss AK-SM 8xxA Series prior to version 4.2](alerts/2026/11/2026-11-26_1014_CVE-2025-41450.md)
+- [🔴 CVE-2023-25915: Authenticated Remote Command Execution in Danfoss AK-SM800A](alerts/2026/11/2026-11-26_1014_CVE-2023-25915.md)
+- [🔴 CVE-2023-25914: Authneticated Path Traversal in Danfoss AK-SM800A](alerts/2026/11/2026-11-26_1014_CVE-2023-25914.md)
 - [🔴 CVE-2026-103406: Session Smart Conductor: An unauthenticated attacker causes arbitrary command execution during key management.](alerts/2026/11/2026-11-26_0342_CVE-2026-103406.md)
 - [🔴 CVE-2026-132224: Optimizely Web Experimentation](alerts/2026/11/2026-11-25_0936_CVE-2026-132224.md)
 - [🔴 CVE-2026-132165: Drupal Core Remote Code Execution Vulnerability](alerts/2026/11/2026-11-25_0936_CVE-2026-132165.md)
-- [🔴 CVE-2026-131914: Deserialization of untrusted data in CodePlex AntiCSRF](alerts/2026/11/2026-11-25_0936_CVE-2026-131914.md)
-- [🔴 CVE-2026-134624: MailAssure / SpamExperts: Server-Side Request Forgery in relay LDAP synchronisation connection check](alerts/2026/11/2026-11-24_1330_CVE-2026-134624.md)
-- [🔴 CVE-2026-133968: Project MONAI MONAI Label](alerts/2026/11/2026-11-24_1330_CVE-2026-133968.md)
-- [🔴 CVE-2026-129289: PHP-FPM request smuggling through an unread HTTP request body](alerts/2026/11/2026-11-22_0405_CVE-2026-129289.md)
-- [🔴 CVE-2026-76466: Cisco Expressway Series Remote Code Execution Vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-76466.md)
-- [🔴 CVE-2026-129448: Apache Roller: Unauthenticated deserialization in the XML-RPC endpoint (releases before 6.1.5)](alerts/2026/11/2026-11-21_0721_CVE-2026-129448.md)
-- [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-21_0721_CVE-2026-123890.md)
-- [🔴 CVE-2025-42884: JNDI Injection vulnerability in SAP NetWeaver Enterprise Portal](alerts/2026/11/2026-11-21_0721_CVE-2025-42884.md)
-- [🔴 CVE-2026-129292: PHP-FPM status endpoint XSS via unescaped user and script fields](alerts/2026/11/2026-11-21_0149_CVE-2026-129292.md)
-- [🔴 CVE-2026-115560: Session serializer mismatch can lead to remote code execution](alerts/2026/11/2026-11-21_0149_CVE-2026-115560.md)
-- [🔴 CVE-2026-123890: vCenter authentication-bypass vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123890.md)
-- [🔴 CVE-2026-123007: NGINX ngx_http_v2_module vulnerability](alerts/2026/11/2026-11-20_0445_CVE-2026-123007.md)
 
 <!-- AUTO:END -->
