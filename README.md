@@ -101,6 +101,7 @@ python -m pytest -q tests
 
 ### Bản tin gần nhất
 
+- [2026/11/28-AM](reports/2026/11/28-AM.md)
 - [2026/11/27-PM](reports/2026/11/27-PM.md)
 - [2026/11/27-AM](reports/2026/11/27-AM.md)
 - [2026/11/26-PM](reports/2026/11/26-PM.md)
@@ -114,10 +115,12 @@ python -m pytest -q tests
 - [2026/11/22-PM](reports/2026/11/22-PM.md)
 - [2026/11/22-AM](reports/2026/11/22-AM.md)
 - [2026/11/21-PM](reports/2026/11/21-PM.md)
-- [2026/11/21-AM](reports/2026/11/21-AM.md)
 
 ### Cảnh báo P1 gần nhất
 
+- [🔴 CVE-2026-136716: Drupal core - Highly critical - Access bypass - SA-CORE-2026-019](alerts/2026/11/2026-11-28_1119_CVE-2026-136716.md)
+- [🔴 CVE-2026-129243: OSGeo GeoServer Incorrect Authorization Vulnerability](alerts/2026/11/2026-11-28_1119_CVE-2026-129243.md)
+- [🔴 CVE-2026-120705: OSGeo GeoServer XML Injection Vulnerability](alerts/2026/11/2026-11-28_1119_CVE-2026-120705.md)
 - [🔴 CVE-2026-47892: Spring Framework Header Predicate Bypass in WebFlux Functional Endpoints](alerts/2026/11/2026-11-26_1014_CVE-2026-47892.md)
 - [🔴 CVE-2026-47884: Spring Framework Improper Path Limitation in XsltView](alerts/2026/11/2026-11-26_1014_CVE-2026-47884.md)
 - [🔴 CVE-2026-133469: Xen Orchestra: Empty-object login token](alerts/2026/11/2026-11-26_1014_CVE-2026-133469.md)
@@ -130,8 +133,5 @@ python -m pytest -q tests
 - [🔴 CVE-2025-41450: Authentication bypass with privileged access in Danfoss AK-SM 8xxA Series prior to version 4.2](alerts/2026/11/2026-11-26_1014_CVE-2025-41450.md)
 - [🔴 CVE-2023-25915: Authenticated Remote Command Execution in Danfoss AK-SM800A](alerts/2026/11/2026-11-26_1014_CVE-2023-25915.md)
 - [🔴 CVE-2023-25914: Authneticated Path Traversal in Danfoss AK-SM800A](alerts/2026/11/2026-11-26_1014_CVE-2023-25914.md)
-- [🔴 CVE-2026-103406: Session Smart Conductor: An unauthenticated attacker causes arbitrary command execution during key management.](alerts/2026/11/2026-11-26_0342_CVE-2026-103406.md)
-- [🔴 CVE-2026-132224: Optimizely Web Experimentation](alerts/2026/11/2026-11-25_0936_CVE-2026-132224.md)
-- [🔴 CVE-2026-132165: Drupal Core Remote Code Execution Vulnerability](alerts/2026/11/2026-11-25_0936_CVE-2026-132165.md)
 
 <!-- AUTO:END -->
